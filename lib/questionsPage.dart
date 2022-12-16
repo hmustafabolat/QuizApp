@@ -47,9 +47,13 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             barrierDismissible: false,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: const Text("Bravo Testi Geçtiniz"),
+                title: const Text("Bravo Geçtiniz"),
                 actions: <Widget>[
                   ElevatedButton(
+                    child: Text("Sıralamanı Gör"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(243, 94, 23, 1),
+                    ),
                     onPressed: () {
                       setState(() {
                         answer = [];
@@ -66,7 +70,6 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                         ),
                       );
                     },
-                    child: Text("Son Sayfaya Git"),
                   )
                 ],
               );
@@ -112,96 +115,91 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
   Widget _buildQuestionCard() {
     return Center(
       child: Container(
-        width: 0.7.sw,
-        height: 0.5.sh,
+        width: 0.8.sw,
+        height: 0.65.sh,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15).w,
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Colors.pink,
-              Colors.purple,
-            ],
-          ),
-        ),
+            borderRadius: BorderRadius.circular(15).w, color: Colors.white),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: 40).r,
+              padding: EdgeInsets.only(top: 100).r,
               child: Center(
                 child: Container(
-                  height: 0.4.sh,
-                  child: Text(
-                    test_1.getQuestionText(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontFamily: "Prompt"),
+                  height: 0.1.sh,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      test_1.getQuestionText(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontFamily: "Prompt"),
+                    ),
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Wrap(
-                //Wrap: Taşmaları önlemek amacıyla kullanılır. Taşacak olan widget'ı bir alt satıra indirir.
-                spacing: 3,
-                runSpacing: 3,
-                children: answer,
-              ),
+            Wrap(
+              //Wrap: Taşmaları önlemek amacıyla kullanılır. Taşacak olan widget'ı bir alt satıra indirir.
+              spacing: 3,
+              runSpacing: 3,
+              children: answer,
             ),
             Column(
               children: [
                 Text(
                   "Score",
                   style: TextStyle(
-                      fontSize: 20, color: Colors.white, fontFamily: "Prompt"),
+                      fontSize: 20.sp,
+                      color: Colors.black,
+                      fontFamily: "Prompt"),
                 ),
                 Text(
                   "$score",
                   style: TextStyle(
-                      fontSize: 25, color: Colors.white, fontFamily: "Prompt"),
+                      fontSize: 25.sp,
+                      color: Colors.black,
+                      fontFamily: "Prompt"),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 6),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          buttonFunction(true);
-                        },
-                        child: Icon(Icons.thumb_up),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 7).r,
+                        child: Padding(
+                          padding: EdgeInsets.all(12).w,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              buttonFunction(true);
+                            },
+                            child: Icon(Icons.thumb_up),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 6),
-                    child: Padding(
-                      padding: EdgeInsets.all(12),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          buttonFunction(false);
-                        },
-                        child: Icon(Icons.thumb_down),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 6).r,
+                        child: Padding(
+                          padding: EdgeInsets.all(12).w,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              buttonFunction(false);
+                            },
+                            child: Icon(Icons.thumb_down),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
@@ -213,16 +211,18 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromRGBO(28, 28, 28, 1),
-          title: Text(
-            "Sorular",
-            style: TextStyle(fontFamily: "Prompt"),
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color.fromRGBO(243, 94, 23, 1),
+            title: Text(
+              "Sorular",
+              style: TextStyle(fontFamily: "Prompt"),
+            ),
+            centerTitle: true,
           ),
-          centerTitle: true,
-        ),
-        backgroundColor: Color.fromRGBO(28, 28, 28, 1),
-        body: _buildBody());
+          backgroundColor: Color.fromRGBO(243, 94, 23, 1),
+          body: _buildBody()),
+    );
   }
 }

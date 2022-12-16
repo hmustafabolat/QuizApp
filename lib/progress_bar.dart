@@ -3,6 +3,8 @@ import 'package:bilgi_yarismasi/test_data.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import 'lastPage.dart';
+
 class ProgressBar extends StatefulWidget {
   final Widget dialogButton;
   const ProgressBar({Key? key, required this.dialogButton}) : super(key: key);
@@ -12,8 +14,12 @@ class ProgressBar extends StatefulWidget {
 }
 
 class _ProgressBarState extends State<ProgressBar> {
-  late int totalDuration = 20;
+  late int totalDuration = 40;
   int currentDuration = 0;
+  List<Widget> answer = [];
+  int score = 0;
+  int correctAnswer = 0;
+  int wrongAnswer = 0;
   QuestionData test_1 = QuestionData();
 
   @override
@@ -22,7 +28,6 @@ class _ProgressBarState extends State<ProgressBar> {
       if (currentDuration == totalDuration) {
         timer.cancel();
 
-
         showDialog(
             context: context,
             barrierDismissible: false,
@@ -30,7 +35,28 @@ class _ProgressBarState extends State<ProgressBar> {
               return AlertDialog(
                 title: const Text("Bravo Testi Geçtiniz"),
                 actions: <Widget>[
-                  widget.dialogButton,
+                  ElevatedButton(
+                    child: Text("Sıralamanı Gör"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(243, 94, 23, 1),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        answer = [];
+                        test_1.quizReset();
+                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LastPage(
+                            score: score,
+                            correctAnswer: correctAnswer,
+                            wrongAnswer: wrongAnswer,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
 
                 ],
               );
@@ -54,19 +80,21 @@ class _ProgressBarState extends State<ProgressBar> {
         currentStep: currentDuration,
         size: 20,
         padding: 0,
-        selectedColor: Colors.purple,
-        unselectedColor: Colors.pink,
+        selectedColor: Colors.white,
+        unselectedColor: Colors.white,
         roundedEdges: Radius.circular(30),
-
         selectedGradientColor: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Colors.purple, Colors.pink],
+          colors: [Colors.white, Colors.white],
         ),
         unselectedGradientColor: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color.fromRGBO(28, 28, 28, 1), Color.fromRGBO(28, 28, 28, 1),],
+          colors: [
+            Color.fromRGBO(243, 94, 23, 1),
+            Color.fromRGBO(243, 94, 23, 1),
+          ],
         ),
       ),
     );

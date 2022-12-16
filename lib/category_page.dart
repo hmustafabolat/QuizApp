@@ -1,4 +1,3 @@
-import 'package:bilgi_yarismasi/StartPage.dart';
 import 'package:bilgi_yarismasi/questionsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +13,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+      backgroundColor: Color.fromRGBO(243, 94, 23, 1),
       body: ListView(
         children: [
           CircleAvatarWidget(),
@@ -37,19 +36,19 @@ class ElevatedButtonSizedBox extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: ElevatedButtonWidget(),
+            child: InkWellButton(),
           ),
           //SizedBox(height: 0.1.sh,),
           Expanded(
-            child: ElevatedButtonWidget(),
+            child: InkWellButton(),
           ),
           //SizedBox(height: 0.1.sh,),
           Expanded(
-            child: ElevatedButtonWidget(),
+            child: InkWellButton(),
           ),
           //SizedBox(height: 0.1.sh,),
           Expanded(
-            child: ElevatedButtonWidget(),
+            child: InkWellButton(),
           ),
         ],
       ),
@@ -64,7 +63,8 @@ class CircleAvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final circleAvatarImage = "https://banner2.cleanpng.com/20180418/xqw/kisspng-avatar-computer-icons-business-business-woman-5ad736ba3f2735.7973320115240536902587.jpg";
+    final circleAvatarImage =
+        "https://banner2.cleanpng.com/20180418/xqw/kisspng-avatar-computer-icons-business-business-woman-5ad736ba3f2735.7973320115240536902587.jpg";
     return Column(
       children: [
         Padding(
@@ -87,45 +87,46 @@ class CircleAvatarWidget extends StatelessWidget {
             ],
           ),
         ),
-
       ],
     );
   }
 }
 
-class ElevatedButtonWidget extends StatelessWidget {
-  const ElevatedButtonWidget({
+class InkWellButton extends StatelessWidget {
+  const InkWellButton({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20).h,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.purple, Colors.purple]),
-          borderRadius: BorderRadius.circular(10).w,
-        ),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.transparent,
-            onSurface: Colors.transparent,
-            shadowColor: Colors.transparent,
-          ),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => SoruSayfasi()));
-          },
-          child: Row(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Lesson Name",
-                  style: TextStyle(fontSize: 16.sp),
-                ),
-              ),
-            ],
+      padding: EdgeInsets.all(20).h,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SoruSayfasi(),
+            ),
+          );
+        },
+        child: Container(
+          padding: EdgeInsets.all(20).w,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20).w)),
+          child: Padding(
+            padding: EdgeInsets.all(10).w,
+            child: Center(
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Lesson",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.sp,
+                          color: Colors.black),
+                    ))),
           ),
         ),
       ),

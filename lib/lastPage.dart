@@ -1,6 +1,7 @@
+import 'package:bilgi_yarismasi/category_page.dart';
 import 'package:bilgi_yarismasi/main.dart';
 import 'package:flutter/material.dart';
-import 'StartPage.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'questionsPage.dart';
 
 class LastPage extends StatefulWidget {
@@ -21,8 +22,8 @@ class LastPage extends StatefulWidget {
 class _LastPageState extends State<LastPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+    return SafeArea(child: Scaffold(
+      backgroundColor: Color.fromRGBO(243, 94, 23, 1),
       body: Center(
         child: Container(
           child: Column(
@@ -31,7 +32,7 @@ class _LastPageState extends State<LastPage> {
               Text(
                 "Score",
                 style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 40.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     letterSpacing: 3,
@@ -40,30 +41,22 @@ class _LastPageState extends State<LastPage> {
               Text(
                 widget.score.toString(),
                 style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 40.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     letterSpacing: 3,
                     fontFamily: "FredokaOne"),
               ),
-              SizedBox(
-                height: 50,
-              ),
+
               Padding(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(20).w,
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Colors.purple,
-                          Colors.pink,
-                        ],
-                      )),
+                      borderRadius: BorderRadius.circular(15).w,
+                      color: Colors.white
+                  ),
                   child: Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(10).w,
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -73,17 +66,17 @@ class _LastPageState extends State<LastPage> {
                               Text(
                                 "Doğru Cevap",
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 15.sp,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontFamily: "FredokaOne"),
                               ),
                               Text(
                                 widget.correctAnswer.toString(),
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 15.sp,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontFamily: "FredokaOne"),
                               ),
                             ],
@@ -93,17 +86,17 @@ class _LastPageState extends State<LastPage> {
                               Text(
                                 "Yanlış Cevap",
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 15.sp,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontFamily: "FredokaOne"),
                               ),
                               Text(
                                 widget.wrongAnswer.toString(),
                                 style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 15.sp,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontFamily: "FredokaOne"),
                               ),
                             ],
@@ -115,9 +108,9 @@ class _LastPageState extends State<LastPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 50),
+                padding: EdgeInsets.only(top: 0.01).r,
                 child: Image.asset(
-                  "assets/images/bgimage.png",
+                  "assets/images/bgimage.png", width: 0.4.sw,
                 ),
               ),
               Row(
@@ -125,11 +118,8 @@ class _LastPageState extends State<LastPage> {
                 children: [
                   DecoratedBox(
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                          Colors.purple,
-                          Colors.pink,
-                        ]),
-                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25).w,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                               color: Color.fromRGBO(0, 0, 0, 0.57),
@@ -149,15 +139,17 @@ class _LastPageState extends State<LastPage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => StartPage()));
+                                        builder: (context) => CategoryPage()));
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
+                                    vertical: 10, horizontal: 10).r,
                                 child: Text(
                                   "Ana Sayfaya Dön",
                                   style: TextStyle(
+                                      fontSize: 13.sp,
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.black,
                                       fontFamily: "Prompt"),
                                 ),
                               )),
@@ -166,15 +158,12 @@ class _LastPageState extends State<LastPage> {
                     ),
                   ),
                   SizedBox(
-                    width: 15,
+                    width: 0.05.sw,
                   ),
                   DecoratedBox(
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                          Colors.purple,
-                          Colors.pink,
-                        ]),
-                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25).w,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                               color: Color.fromRGBO(0, 0, 0, 0.57),
@@ -198,10 +187,12 @@ class _LastPageState extends State<LastPage> {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
+                                    vertical: 10, horizontal: 20).r,
                                 child: Text(
                                   "Tekrar Oyna",
                                   style: TextStyle(
+                                      fontSize: 13.sp,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Prompt"),
                                 ),
@@ -216,6 +207,6 @@ class _LastPageState extends State<LastPage> {
           ),
         ),
       ),
-    );
+    ));
   }
 }
