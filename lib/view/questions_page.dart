@@ -1,11 +1,11 @@
-import 'package:bilgi_yarismasi/view/lastPage.dart';
+import 'package:bilgi_yarismasi/view/score_page.dart';
 import 'package:bilgi_yarismasi/main.dart';
 import 'package:bilgi_yarismasi/widgets/progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../config/icon_const.dart';
-import '../model/questionClass.dart';
+import '../model/question_model.dart';
 import '../config/test_data.dart';
 
 class SoruSayfasi extends StatefulWidget {

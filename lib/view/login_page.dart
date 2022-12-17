@@ -1,9 +1,13 @@
 import 'package:bilgi_yarismasi/view/category_page.dart';
 import 'package:bilgi_yarismasi/view/register_page.dart';
-import 'package:bilgi_yarismasi/service/auth.dart';
+import 'package:bilgi_yarismasi/service/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
+import '../model/user_model.dart';
+import '../viewmodel/auth_viewmodel.dart';
 
 class UserLoginPage extends StatefulWidget {
   const UserLoginPage({Key? key}) : super(key: key);
@@ -13,10 +17,11 @@ class UserLoginPage extends StatefulWidget {
 }
 
 class _UserLoginPageState extends State<UserLoginPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final _globalKey = GlobalKey<FormState>();
+  String? email, password;
 
-  AuthService _authService = AuthService();
+  final AuthViewModel _viewModel = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,17 +45,17 @@ class _UserLoginPageState extends State<UserLoginPage> {
                 child: Padding(
                   padding: EdgeInsets.all(20.0).w,
                   child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        emailTextField(),
-                        buildSizedBox(),
-                        passwordTextField(),
-                        buildSizedBox(),
-                        inkWell(context),
-                        buildSizedBox(),
-                        buildInkWell(context),
-                      ],
+                    child: Form(
+                      key: _globalKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _emailTextField(),
+                          _passwordTextField(),
+                          _signInButton(),
+                          _goRegisterPageButton(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -60,17 +65,10 @@ class _UserLoginPageState extends State<UserLoginPage> {
     );
   }
 
-  SizedBox buildSizedBox() {
-    return SizedBox(
-      height: 0.05.sh,
-    );
-  }
-
-  InkWell buildInkWell(BuildContext context) {
+  InkWell _goRegisterPageButton() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => RegisterPage()));
+        Get.to(() => RegisterPage());
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -94,15 +92,16 @@ class _UserLoginPageState extends State<UserLoginPage> {
     );
   }
 
-  InkWell inkWell(BuildContext context) {
+  InkWell _signInButton() {
     return InkWell(
-      onTap: () {
-        _authService
-            .signIn(_emailController.text, _passwordController.text)
-            .then((value) {
-          return Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CategoryPage()));
-        });
+      onTap: () async {
+        if(_globalKey.currentState!.validate()){
+          _globalKey.currentState!.save();
+
+          UserModel userModel = UserModel(email: email, password: password);
+
+          await _viewModel.signIn(userModel);
+        }
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8),
@@ -127,13 +126,15 @@ class _UserLoginPageState extends State<UserLoginPage> {
     );
   }
 
-  TextField passwordTextField() {
-    return TextField(
+  TextFormField _passwordTextField() {
+    return TextFormField(
         style: TextStyle(
           color: Colors.black,
         ),
+        onSaved: (value){
+          password = value;
+        },
         cursorColor: Colors.black,
-        controller: _passwordController,
         obscureText: true,
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -157,12 +158,14 @@ class _UserLoginPageState extends State<UserLoginPage> {
         ));
   }
 
-  TextField emailTextField() {
-    return TextField(
-        controller: _emailController,
+  TextFormField _emailTextField() {
+    return TextFormField(
         style: TextStyle(
           color: Colors.black,
         ),
+        onSaved: (value){
+          email = value;
+        },
         cursorColor: Colors.black,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(

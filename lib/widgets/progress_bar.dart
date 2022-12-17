@@ -3,7 +3,7 @@ import 'package:bilgi_yarismasi/config/test_data.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import '../view/lastPage.dart';
+import '../view/score_page.dart';
 
 class ProgressBar extends StatefulWidget {
   final Widget dialogButton;

@@ -2,7 +2,7 @@ import 'package:bilgi_yarismasi/view/category_page.dart';
 import 'package:bilgi_yarismasi/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'questionsPage.dart';
+import 'questions_page.dart';
 
 class LastPage extends StatefulWidget {
   final int score;

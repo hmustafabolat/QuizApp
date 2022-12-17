@@ -1,8 +1,12 @@
 import 'package:bilgi_yarismasi/view/category_page.dart';
-import 'package:bilgi_yarismasi/view/login_Page.dart';
-import 'package:bilgi_yarismasi/service/auth.dart';
+import 'package:bilgi_yarismasi/view/login_page.dart';
+import 'package:bilgi_yarismasi/service/auth_service.dart';
+import 'package:bilgi_yarismasi/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
+import '../model/user_model.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -12,13 +16,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _passwordAgainController =
-      TextEditingController();
+  final _globalKey = GlobalKey<FormState>();
+  String? username, email, password, passwordVerify;
 
-  AuthService _authService = AuthService();
+  AuthViewModel _viewModel = AuthViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -42,168 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               blurRadius: 10,
                               spreadRadius: 2)
                         ]),
-                    child: Padding(
-                      padding: EdgeInsets.all(10).w,
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextField(
-                                controller: _nameController,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                                cursorColor: Colors.black,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.person,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: 'Kullanıcı adı',
-                                  prefixText: ' ',
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  focusColor: Colors.black,
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                  enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                )),
-                            SizedBox(
-                              height: 0.05.sh,
-                            ),
-                            TextField(
-                                controller: _emailController,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                                cursorColor: Colors.black,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.mail,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: 'E-Mail',
-                                  prefixText: ' ',
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  focusColor: Colors.black,
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                  enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                )),
-                            SizedBox(
-                              height: 0.05.sh,
-                            ),
-                            TextField(
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                                cursorColor: Colors.black,
-                                controller: _passwordController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.vpn_key,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: 'Parola',
-                                  prefixText: ' ',
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  focusColor: Colors.black,
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                  enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                )),
-                            SizedBox(
-                              height: 0.05.sh,
-                            ),
-                            TextField(
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                                cursorColor: Colors.black,
-                                controller: _passwordAgainController,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.vpn_key,
-                                    color: Colors.black,
-                                  ),
-                                  hintText: 'Parola Tekrar',
-                                  prefixText: ' ',
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  focusColor: Colors.black,
-                                  focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                  enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.black,
-                                  )),
-                                )),
-                            SizedBox(
-                              height: 0.05.sh,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                _authService
-                                    .createPerson(
-                                        _nameController.text,
-                                        _emailController.text,
-                                        _passwordController.text)
-                                    .then((value) {
-                                  return Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CategoryPage()));
-                                });
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 5).r,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Color.fromRGBO(243, 94, 23, 1),
-                                    ),
-                                    color: Color.fromRGBO(243, 94, 23, 1),
-
-                                    //color: colorPrimaryShade,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(30))
-                                            .w),
-                                child: Padding(
-                                  padding: EdgeInsets.all(4).w,
-                                  child: Center(
-                                      child: Text(
-                                    "Kayıt Ol",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                  )),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: _buildSignUpForm(),
                   ),
                 ),
               ),
@@ -214,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Row(
                     children: [
                       IconButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () => Get.back(),
                         icon: Icon(
                           Icons.arrow_back_ios_outlined,
                           color: Colors.white,
@@ -234,6 +74,199 @@ class _RegisterPageState extends State<RegisterPage> {
               )
             ],
           )),
+    );
+  }
+
+  Padding _buildSignUpForm() {
+    return Padding(
+      padding: EdgeInsets.all(10).w,
+      child: Center(
+        child: Form(
+          key: _globalKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  onSaved: (value) {
+                    username = value;
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Boş değer giremezsiniz.';
+                    } else if (value.contains(' ')) {
+                      return 'Boş değer giremezsiniz.';
+                    } else {
+                      return null;
+                    }
+                  },
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Colors.black,
+                    ),
+                    hintText: 'Kullanıcı adı',
+                    prefixText: ' ',
+                    hintStyle: TextStyle(color: Colors.black),
+                    focusColor: Colors.black,
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                  )),
+              SizedBox(
+                height: 0.05.sh,
+              ),
+              TextFormField(
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  onSaved: (value) {
+                    email = value;
+                  },
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.mail,
+                      color: Colors.black,
+                    ),
+                    hintText: 'E-Mail',
+                    prefixText: ' ',
+                    hintStyle: TextStyle(color: Colors.black),
+                    focusColor: Colors.black,
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                  )),
+              SizedBox(
+                height: 0.05.sh,
+              ),
+              TextFormField(
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  onSaved: (value) {
+                    password = value;
+                  },
+                  cursorColor: Colors.black,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.vpn_key,
+                      color: Colors.black,
+                    ),
+                    hintText: 'Parola',
+                    prefixText: ' ',
+                    hintStyle: TextStyle(color: Colors.black),
+                    focusColor: Colors.black,
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                  )),
+              SizedBox(
+                height: 0.05.sh,
+              ),
+              TextFormField(
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  onSaved: (value) {
+                    passwordVerify = value;
+                  },
+                  cursorColor: Colors.black,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.vpn_key,
+                      color: Colors.black,
+                    ),
+                    hintText: 'Parola Tekrar',
+                    prefixText: ' ',
+                    hintStyle: TextStyle(color: Colors.black),
+                    focusColor: Colors.black,
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                      color: Colors.black,
+                    )),
+                  )),
+              SizedBox(
+                height: 0.05.sh,
+              ),
+              _signUpButton(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  InkWell _signUpButton() {
+    return InkWell(
+      onTap: () async {
+        if (_globalKey.currentState!.validate()) {
+          _globalKey.currentState!.save();
+
+          if (password == passwordVerify) {
+            UserModel userModel = UserModel(
+              username: username,
+              email: email,
+              password: password,
+              passwordVerify: passwordVerify,
+            );
+
+            await _viewModel.signUp(userModel);
+
+            Get.back();
+          } else {
+            Get.defaultDialog(title: 'Şifren uyuşmuyor');
+          }
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 5).r,
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: Color.fromRGBO(243, 94, 23, 1),
+            ),
+            color: Color.fromRGBO(243, 94, 23, 1),
+
+            //color: colorPrimaryShade,
+            borderRadius: BorderRadius.all(Radius.circular(30)).w),
+        child: Padding(
+          padding: EdgeInsets.all(4).w,
+          child: Center(
+              child: Text(
+            "Kayıt Ol",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          )),
+        ),
+      ),
     );
   }
 }

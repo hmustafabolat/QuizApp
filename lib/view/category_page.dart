@@ -1,6 +1,8 @@
-import 'package:bilgi_yarismasi/view/questionsPage.dart';
+import 'package:bilgi_yarismasi/view/questions_page.dart';
+import 'package:bilgi_yarismasi/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({Key? key}) : super(key: key);
@@ -10,14 +12,26 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
+  final AuthViewModel _viewModel = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(243, 94, 23, 1),
-      body: ListView(
+      body: Stack(
         children: [
-          CircleAvatarWidget(),
-          ElevatedButtonSizedBox(),
+          ListView(
+            children: [
+              CircleAvatarWidget(),
+              ElevatedButtonSizedBox(),
+            ],
+          ),
+          IconButton(
+            onPressed: () async {
+              await _viewModel.signOut();
+            },
+            icon: Icon(Icons.backspace),
+          )
         ],
       ),
     );

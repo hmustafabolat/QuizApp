@@ -1,18 +1,22 @@
-import 'package:bilgi_yarismasi/view/category_page.dart';
-import 'package:bilgi_yarismasi/view/login_Page.dart';
-import 'package:bilgi_yarismasi/view/register_page.dart';
+import 'package:bilgi_yarismasi/start_app/start_app.dart';
+import 'package:bilgi_yarismasi/view/landing_page.dart';
+import 'package:bilgi_yarismasi/view/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'firebase_options.dart';
 
 //todo: final ve const farkı
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  StartApp.setupLocator();
   runApp(BilgiTesti());
 }
 
@@ -26,9 +30,9 @@ class BilgiTesti extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: UserLoginPage(),
+          home: LandingPage(),
         );
       },
     );

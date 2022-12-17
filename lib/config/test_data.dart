@@ -1,62 +1,62 @@
-import 'package:bilgi_yarismasi/view/lastPage.dart';
+import 'package:bilgi_yarismasi/view/score_page.dart';
 import 'package:bilgi_yarismasi/main.dart';
 import 'package:flutter/cupertino.dart';
-import '../model/questionClass.dart';
+import '../model/question_model.dart';
 
 class QuestionData {
   int _questionIndex = 0;
-  List<Question> questionBank = [
-    Question(
+  List<QuestionModel> questionBank = [
+    QuestionModel(
         questionText:
             "Havaya atılan bir madeni paranın tura gelme ihtimali 1/2'dir.",
         questionAnswer: true),
-    Question(
+    QuestionModel(
         questionText: "Q klavyede Q harfinin sağ yanında W harfi vardır",
         questionAnswer: true),
-    Question(questionText: "-2 çift sayıdır.", questionAnswer: true),
-    Question(
+    QuestionModel(questionText: "-2 çift sayıdır.", questionAnswer: true),
+    QuestionModel(
         questionText: "Muğla Marmara bölgesi'ndedir.", questionAnswer: false),
-    Question(
+    QuestionModel(
         questionText: "Türkiye, Birleşmiş Milletler üyesidir.",
         questionAnswer: true),
-    Question(questionText: "ABD, NATO üyesidir.", questionAnswer: true),
-    Question(
+    QuestionModel(questionText: "ABD, NATO üyesidir.", questionAnswer: true),
+    QuestionModel(
         questionText: "12 Eylül darbesi 1982 yılında gerçekleşmiştir.",
         questionAnswer: false),
-    Question(
+    QuestionModel(
         questionText: "Bursa, Marmara Bölgesi'ndedir.", questionAnswer: true),
-    Question(
+    QuestionModel(
         questionText: "Bütün rakamların çarpımı 0'dır.", questionAnswer: true),
-    Question(questionText: "Flört kelimesi 1 hecelidir.", questionAnswer: true),
-    Question(
+    QuestionModel(questionText: "Flört kelimesi 1 hecelidir.", questionAnswer: true),
+    QuestionModel(
         questionText: "Noktainazar trafik polisi anlamına gelen bir kelimedir.",
         questionAnswer: false),
-    Question(
+    QuestionModel(
         questionText: "Hakkari, güneydoğu anadolu bölgesi'ndedir.",
         questionAnswer: false),
-    Question(
+    QuestionModel(
         questionText: "Kuzey İrlanda Birleşik Krallık'a bağlıdır.",
         questionAnswer: true),
-    Question(
+    QuestionModel(
         questionText: "Trakya 3 heceli bir kelimedir.", questionAnswer: false),
-    Question(
+    QuestionModel(
         questionText: "Kadınlarda 23, erkeklerde 46 kromozom bulunur.",
         questionAnswer: false),
-    Question(
+    QuestionModel(
         questionText:
             "İtalya'da Bir Türk Sevdim romanındaki Türk'ün adı Mehmet'tir.",
         questionAnswer: true),
-    Question(
+    QuestionModel(
         questionText: "Balonla Beş Hafta kitabında gezilen kıta Asya'dır.",
         questionAnswer: false),
-    Question(
+    QuestionModel(
         questionText: "Uruguay'ın resmi adı Uruguay Doğu Cumhuriyeti'dir.",
         questionAnswer: true),
-    Question(
+    QuestionModel(
         questionText:
             "Su deniz seviyesinde 100 derecenin altında buharlaşabilir.",
         questionAnswer: true),
-    Question(
+    QuestionModel(
         questionText: "Karbonatın yapısında karbon bulunmaz",
         questionAnswer: false),
   ];
