@@ -1,4 +1,4 @@
-import 'package:bilgi_yarismasi/questionsPage.dart';
+import 'package:bilgi_yarismasi/view/questionsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

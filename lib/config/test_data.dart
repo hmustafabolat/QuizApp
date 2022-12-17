@@ -1,7 +1,7 @@
-import 'package:bilgi_yarismasi/lastPage.dart';
+import 'package:bilgi_yarismasi/view/lastPage.dart';
 import 'package:bilgi_yarismasi/main.dart';
 import 'package:flutter/cupertino.dart';
-import 'questionClass.dart';
+import '../model/questionClass.dart';
 
 class QuestionData {
   int _questionIndex = 0;
@@ -59,7 +59,6 @@ class QuestionData {
     Question(
         questionText: "Karbonatın yapısında karbon bulunmaz",
         questionAnswer: false),
-
   ];
 
   String getQuestionText() {

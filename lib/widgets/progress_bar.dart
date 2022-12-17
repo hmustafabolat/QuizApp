@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:bilgi_yarismasi/test_data.dart';
+import 'package:bilgi_yarismasi/config/test_data.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import 'lastPage.dart';
+import '../view/lastPage.dart';
 
 class ProgressBar extends StatefulWidget {
   final Widget dialogButton;
@@ -14,7 +14,7 @@ class ProgressBar extends StatefulWidget {
 }
 
 class _ProgressBarState extends State<ProgressBar> {
-  late int totalDuration = 40;
+  late int totalDuration = 5;
   int currentDuration = 0;
   List<Widget> answer = [];
   int score = 0;
@@ -33,13 +33,21 @@ class _ProgressBarState extends State<ProgressBar> {
             barrierDismissible: false,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: const Text("Bravo Testi Geçtiniz"),
+                backgroundColor: Color.fromRGBO(243, 94, 23, 1),
+                title: Text(
+                  "Bravo Testi Geçtiniz",
+                  style: TextStyle(color: Colors.white),
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25)),
                 actions: <Widget>[
                   ElevatedButton(
-                    child: Text("Sıralamanı Gör"),
+                    child: Text("Sıralamamı Gör"),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(243, 94, 23, 1),
-                    ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black),
                     onPressed: () {
                       setState(() {
                         answer = [];
@@ -57,7 +65,6 @@ class _ProgressBarState extends State<ProgressBar> {
                       );
                     },
                   ),
-
                 ],
               );
             });

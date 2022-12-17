@@ -5,6 +5,6 @@ class Question {
   Question({required this.questionText, required this.questionAnswer});
 }
 
-class Score{
-  static int score = 0 ;
+class Score {
+  static int score = 0;
 }

@@ -1,5 +1,5 @@
-import 'package:bilgi_yarismasi/category_page.dart';
-import 'package:bilgi_yarismasi/login_Page.dart';
+import 'package:bilgi_yarismasi/view/category_page.dart';
+import 'package:bilgi_yarismasi/view/login_Page.dart';
 import 'package:bilgi_yarismasi/service/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -171,7 +171,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                   return Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => CategoryPage()));
+                                          builder: (context) =>
+                                              CategoryPage()));
                                 });
                               },
                               child: Container(
@@ -184,7 +185,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
                                     //color: colorPrimaryShade,
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(30)).w),
+                                        BorderRadius.all(Radius.circular(30))
+                                            .w),
                                 child: Padding(
                                   padding: EdgeInsets.all(4).w,
                                   child: Center(

@@ -1,11 +1,9 @@
-import 'package:bilgi_yarismasi/category_page.dart';
-import 'package:bilgi_yarismasi/register_page.dart';
+import 'package:bilgi_yarismasi/view/category_page.dart';
+import 'package:bilgi_yarismasi/view/register_page.dart';
 import 'package:bilgi_yarismasi/service/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
 
 class UserLoginPage extends StatefulWidget {
   const UserLoginPage({Key? key}) : super(key: key);
@@ -52,7 +50,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
                         inkWell(context),
                         buildSizedBox(),
                         buildInkWell(context),
-
                       ],
                     ),
                   ),

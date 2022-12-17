@@ -1,4 +1,4 @@
-import 'package:bilgi_yarismasi/category_page.dart';
+import 'package:bilgi_yarismasi/view/category_page.dart';
 import 'package:bilgi_yarismasi/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +22,8 @@ class LastPage extends StatefulWidget {
 class _LastPageState extends State<LastPage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return SafeArea(
+        child: Scaffold(
       backgroundColor: Color.fromRGBO(243, 94, 23, 1),
       body: Center(
         child: Container(
@@ -47,14 +48,12 @@ class _LastPageState extends State<LastPage> {
                     letterSpacing: 3,
                     fontFamily: "FredokaOne"),
               ),
-
               Padding(
                 padding: EdgeInsets.all(20).w,
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15).w,
-                      color: Colors.white
-                  ),
+                      color: Colors.white),
                   child: Padding(
                     padding: EdgeInsets.all(10).w,
                     child: Center(
@@ -110,7 +109,8 @@ class _LastPageState extends State<LastPage> {
               Padding(
                 padding: EdgeInsets.only(top: 0.01).r,
                 child: Image.asset(
-                  "assets/images/bgimage.png", width: 0.4.sw,
+                  "assets/images/bgimage.png",
+                  width: 0.4.sw,
                 ),
               ),
               Row(
@@ -143,7 +143,8 @@ class _LastPageState extends State<LastPage> {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10).r,
+                                        vertical: 10, horizontal: 10)
+                                    .r,
                                 child: Text(
                                   "Ana Sayfaya Dön",
                                   style: TextStyle(
@@ -187,7 +188,8 @@ class _LastPageState extends State<LastPage> {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20).r,
+                                        vertical: 10, horizontal: 20)
+                                    .r,
                                 child: Text(
                                   "Tekrar Oyna",
                                   style: TextStyle(
