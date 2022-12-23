@@ -54,6 +54,16 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           _passwordTextField(),
                           _signInButton(),
                           _goRegisterPageButton(),
+                          SizedBox(height: 0.01.sh,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset("assets/images/programing.png"),
+                              SizedBox(width: 0.03.sw),
+                              Text("LikLik Software", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10.sp
+                              ),),
+                            ],
+                          ),
                         ],
                       ),
                     ),

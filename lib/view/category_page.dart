@@ -3,6 +3,7 @@ import 'package:bilgi_yarismasi/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:bilgi_yarismasi/model/user_model.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({Key? key}) : super(key: key);
@@ -13,7 +14,9 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage> {
   final AuthViewModel _viewModel = Get.find();
-
+  final circleAvatarImage =
+      "https://banner2.cleanpng.com/20180418/xqw/kisspng-avatar-computer-icons-business-business-woman-5ad736ba3f2735.7973320115240536902587.jpg";
+  final UserModel username = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,16 +25,49 @@ class _CategoryPageState extends State<CategoryPage> {
         children: [
           ListView(
             children: [
-              CircleAvatarWidget(),
+
+              //CircleAvatarWidget(),
+      Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+
+                CircleAvatar(
+                  backgroundImage: NetworkImage(circleAvatarImage),
+                ),
+                SizedBox(
+                  width: 0.03.sw,
+                ),
+                Text(username.username.toString(),
+                  style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  width: 0.2.sw,
+                ),
+                IconButton(
+                  onPressed: () async {
+                    final AuthViewModel _viewModel = Get.find();
+                    await _viewModel.signOut();
+                  },
+                  icon: Icon(Icons.logout, color: Colors.white,),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
               ElevatedButtonSizedBox(),
             ],
           ),
-          IconButton(
-            onPressed: () async {
-              await _viewModel.signOut();
-            },
-            icon: Icon(Icons.backspace),
-          )
+
         ],
       ),
     );
@@ -69,9 +105,10 @@ class ElevatedButtonSizedBox extends StatelessWidget {
     );
   }
 }
-
+/*
 class CircleAvatarWidget extends StatelessWidget {
-  const CircleAvatarWidget({
+
+  CircleAvatarWidget({
     Key? key,
   }) : super(key: key);
 
@@ -79,24 +116,38 @@ class CircleAvatarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final circleAvatarImage =
         "https://banner2.cleanpng.com/20180418/xqw/kisspng-avatar-computer-icons-business-business-woman-5ad736ba3f2735.7973320115240536902587.jpg";
+    final UserModel _username = UserModel();
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Padding(
           padding: EdgeInsets.all(15),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
+
               CircleAvatar(
                 backgroundImage: NetworkImage(circleAvatarImage),
               ),
               SizedBox(
                 width: 0.03.sw,
               ),
-              Text(
-                "HMB",
+              Text(_username.username.toString(),
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w700,
                     color: Colors.white),
+              ),
+              SizedBox(
+                width: 0.2.sw,
+              ),
+              IconButton(
+                onPressed: () async {
+                  final AuthViewModel _viewModel = Get.find();
+                  await _viewModel.signOut();
+                },
+                icon: Icon(Icons.logout, color: Colors.white,),
               ),
             ],
           ),
@@ -104,7 +155,7 @@ class CircleAvatarWidget extends StatelessWidget {
       ],
     );
   }
-}
+}*/
 
 class InkWellButton extends StatelessWidget {
   const InkWellButton({

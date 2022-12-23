@@ -7,8 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'firebase_options.dart';
 
-//todo: final ve const farkı
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
